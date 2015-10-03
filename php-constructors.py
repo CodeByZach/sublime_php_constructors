@@ -34,10 +34,13 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 		constructor = self.getConstructor(docblock, parameters, internalConstructorContent)
 
 		# Get the position to insert the constructor
-		lastAttrPos = 0 if len(attributes) == 0 else classAttributes[-1].end()
+		insertPosition = self.getConstructorPosition(classAttributes)
 
 		# Insert constructor
-		self.view.insert(edit, lastAttrPos, constructor)
+		if insertPosition == None or insertPosition == -1:
+			echo('Couldn\'t insert constructor in file:' + self.view.file_name())
+		else:
+			self.view.insert(edit, insertPosition, constructor)
 
 	def getTemplate(self, templateName):
 		return open(dirname(realpath(__file__)) + '/templates/' + templateName).read()
@@ -111,3 +114,13 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 		constructor = constructor.replace(':attribute_setters', internalConstructorContent)
 
 		return constructor
+
+	def getConstructorPosition(self, classAttributesRegions):
+		position = None
+
+		if len(classAttributesRegions) == 0:
+			position = self.view.find('class\s+\w[\w\s\n]+\{', sublime.IGNORECASE).end()
+		else:
+			position = classAttributesRegions[-1].end()
+
+		return position
