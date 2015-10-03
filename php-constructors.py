@@ -60,7 +60,7 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 		return attributes
 
 	def getDockblock(self, attributeNamesList):
-		viewContent = open(self.view.file_name()).read()
+		viewContent = self.view.substr(sublime.Region(0, self.view.size()))
 		docRegex = '/\*\*\n\s*\*\s+@var\s+([\w\\\\]+)(.*)\n\s*.*\*/\n\s*.*\$'
 		paramTemplate = self.getTemplate('paramdoc')
 		parameters = ''
