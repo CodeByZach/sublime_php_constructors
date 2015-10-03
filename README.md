@@ -17,7 +17,7 @@ class test
 	 */
 	private $foo;
 }
-	```
+```
 
 2. Go to Tools -> PHP Constructor
 3. Constructor will be generated
