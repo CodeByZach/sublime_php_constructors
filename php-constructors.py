@@ -3,8 +3,6 @@ import sublime_plugin
 import re
 from os.path import dirname, realpath
 
-import pprint
-
 def echo(msg):
 	print ("[PHP Constructors] %s" % msg)
 
