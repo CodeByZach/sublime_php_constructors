@@ -4,18 +4,18 @@
 	"packages": [{
 		"name": "PHP Constructors",
 		"author": "Jose Torres",
-		"details": "here goes repo url",
-		"labels": ["auto-complete", "php", "snippets", "code generation", "text manipulation", "formatting", "constructor"],
+		"details": "https://bitbucket.org/jltorresm/sublime-php-constructors",
+		"labels": ["php", "constructor", "snippets", "code generation", "auto-complete", "text manipulation"],
 		"releases": [
 			{
-				"date": "2013-09-06 00:00:00",
-				"version": "0.1.0",
+				"date": "2015-10-03 22:02:00",
+				"version": "1.0.0",
 				"sublime_text": "<3000",
-				"url": "here goes repo url"
+				"url": "https://bitbucket.org/jltorresm/sublime-php-constructors"
 			},
 			{
 				"sublime_text": ">=3000",
-				"details": "heregoes repo tags"
+				"details": "https://bitbucket.org/jltorresm/sublime-php-constructors"
 			}
 		]
 	}]
