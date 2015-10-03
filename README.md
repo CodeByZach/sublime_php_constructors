@@ -9,37 +9,37 @@ PHP Constructors generates for you PHP Classes constructors.
 ##Usage Instruction:
 1. Write your class properties inside your PHP class:
 
-	```php
-	class test
-	{
-		/**
-		 * @var my\long\namespace Var that holds foo
-		 */
-		private $foo;
-	}
+```php
+class test
+{
+	/**
+	 * @var my\long\namespace Var that holds foo
+	 */
+	private $foo;
+}
 	```
 
 2. Go to Tools -> PHP Constructor
 3. Constructor will be generated
 
-	```php
-	class test
-	{
-		/**
-		 * @var my\long\namespace Var that holds foo
-		 */
-		private $foo;
+```php
+class test
+{
+	/**
+	 * @var my\long\namespace Var that holds foo
+	 */
+	private $foo;
 
-		/**
-		 * Class Constructor
-		 * @param my\long\namespace   $foo    Var that holds foo
-		 */
-		public function __construct($foo)
-		{
-			$this->foo = $foo;
-		}
+	/**
+	 * Class Constructor
+	 * @param my\long\namespace   $foo    Var that holds foo
+	 */
+	public function __construct($foo)
+	{
+		$this->foo = $foo;
 	}
-	```
+}
+```
 
 Take sometime to document your class properties with the following format:
 
