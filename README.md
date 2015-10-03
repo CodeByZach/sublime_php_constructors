@@ -9,7 +9,7 @@ PHP Constructors generates for you PHP Classes constructors.
 ##Usage Instruction:
 1. Write your class properties inside your PHP class:
 
-```php
+```
 class test
 {
 	/**
@@ -22,7 +22,7 @@ class test
 2. Go to Tools -> PHP Constructor
 3. Constructor will be generated
 
-```php
+```
 class test
 {
 	/**
@@ -43,7 +43,7 @@ class test
 
 Take sometime to document your class properties with the following format:
 
-```php
+```
 class test
 {
 	/**
