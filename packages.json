@@ -1,0 +1,22 @@
+{
+	"schema_version": "2.0",
+
+	"packages": [{
+		"name": "PHP Constructors",
+		"author": "Jose Torres",
+		"details": "here goes repo url",
+		"labels": ["auto-complete", "php", "snippets", "code generation", "text manipulation", "formatting", "constructor"],
+		"releases": [
+			{
+				"date": "2013-09-06 00:00:00",
+				"version": "0.1.0",
+				"sublime_text": "<3000",
+				"url": "here goes repo url"
+			},
+			{
+				"sublime_text": ">=3000",
+				"details": "heregoes repo tags"
+			}
+		]
+	}]
+}

@@ -1,0 +1,8 @@
+{
+	"version": "0.1.0",
+	"dependencies": [],
+	"platforms": ["*"],
+	"description": "Generate constructors for PHP classes",
+	"sublime_text": ">=3000",
+	"url": "repo url"
+}

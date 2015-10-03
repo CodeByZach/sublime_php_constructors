@@ -1,0 +1,10 @@
+[
+	{ "caption": "-" },
+	{
+		"caption": "PHP Constructor",
+		"children":
+		[
+			{ "command": "php_generate_constructor", "caption": "Generate PHP Constructor for Class" },
+		]
+	}
+]

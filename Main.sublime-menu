@@ -1,0 +1,25 @@
+[{
+	"id": "tools",
+	"children": [{
+		"caption": "PHP Constructor",
+		"command": "show_overlay",
+		"args": {"overlay": "command_palette", "text": "PHP: Generate Constructor"}
+	}]
+}, {
+	"id": "preferences",
+	"children":[{
+		"id": "package-settings",
+		"children":[{
+			"caption": "PHP Constructors",
+			"children": [{
+				"command": "open_file",
+				"args": {"file": "${packages}/PhpConstructors/php-constructors.sublime-settings"},
+				"caption": "Settings – Default"
+			}, {
+				"command": "open_file",
+				"args": {"file": "${packages}/User/php-constructors.sublime-settings"},
+				"caption": "Settings – User"
+			}]
+		}]
+	}]
+}]

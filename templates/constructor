@@ -1,0 +1,5 @@
+
+:docblock
+	public function __construct(:parameter_list) {
+		:attribute_setters
+	}
