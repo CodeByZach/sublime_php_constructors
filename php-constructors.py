@@ -41,7 +41,25 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 			self.view.insert(edit, insertPosition, constructor)
 
 	def getTemplate(self, templateName):
-		return open(dirname(realpath(__file__)) + '/templates/' + templateName).read()
+		template = ''
+		if templateName == 'paramdoc':
+			template = '''	 * @param :type   :var_name   :description\n'''
+		elif templateName == 'dockblock':
+			template = '''
+	/**
+	 * Class Constructor:param_list
+	 */\n'''
+		elif templateName == 'constructor':
+			template = '''
+:docblock
+	public function __construct(:parameter_list)
+	{
+		:attribute_setters
+	}
+'''
+
+		return template
+		# return open(dirname(realpath(__file__)) + '/templates/' + templateName).read()
 
 	def getClassAttributeRegions(self):
 		# Search attributes in the current view
