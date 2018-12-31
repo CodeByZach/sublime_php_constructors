@@ -1,50 +1,50 @@
 [
-    {
-        "id": "tools",
-        "children":
-        [
-            {
-                "caption": "PHP Constructor",
-                "command": "show_overlay", "args": {
-                    "overlay": "command_palette",
-                    "text": "PHP: Generate Constructor"
-                }
-            }
-        ]
-    },
-    {
-        "id": "preferences",
-        "children":
-        [
-            {
-                "caption": "Package Settings",
-                "mnemonic": "P",
-                "id": "package-settings",
-                "children":
-                [
-                    {
-                        "caption": "PHP Constructors",
-                        "children":
-                        [
-                            {
-                                "caption": "Settings",
-                                "command": "edit_settings", "args": {
-                                    "base_file": "${packages}/PhpConstructors/php-constructors.sublime-settings",
-                                    "default": "{\n$0\n}\n"
-                                }
-                            },
-                            { "caption": "-" },
-                            {
-                                "caption": "README",
-                                "command": "open_file", "args":
-                                {
-                                    "file": "${packages}/PhpConstructors/README.md"
-                                }
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
+	{
+		"id": "tools",
+		"children":
+		[
+			{
+				"caption": "PHP Constructor",
+				"command": "show_overlay", "args": {
+					"overlay": "command_palette",
+					"text": "PHP: Generate Constructor"
+				}
+			}
+		]
+	},
+	{
+		"id": "preferences",
+		"children":
+		[
+			{
+				"caption": "Package Settings",
+				"mnemonic": "P",
+				"id": "package-settings",
+				"children":
+				[
+					{
+						"caption": "PHP Constructors",
+						"children":
+						[
+							{
+								"caption": "Settings",
+								"command": "edit_settings", "args": {
+									"base_file": "${packages}/PHPConstructors/php-constructors.sublime-settings",
+									"default": "{\n$0\n}\n"
+								}
+							},
+							{ "caption": "-" },
+							{
+								"caption": "README",
+								"command": "open_file", "args":
+								{
+									"file": "${packages}/PHPConstructors/README.md"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
 ]

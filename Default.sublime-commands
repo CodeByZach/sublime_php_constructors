@@ -1,6 +1,6 @@
 [
-    {
-        "caption": "PHP: Generate Constructor for Class",
-        "command": "php_generate_constructor"
-    }
+	{
+		"caption": "PHP: Generate Constructor for Class",
+		"command": "php_generate_constructor"
+	}
 ]
