@@ -1,14 +1,20 @@
 [
 	{
+		"caption": "Tools",
+		"mnemonic": "T",
 		"id": "tools",
 		"children":
 		[
 			{
-				"caption": "PHP Constructor",
-				"command": "show_overlay", "args": {
-					"overlay": "command_palette",
-					"text": "PHP: Generate Constructor"
-				}
+				"id": "packages",
+				"caption": "Packages",
+				"children":
+				[
+					{
+						"caption": "Generate PHP Constructor for Class",
+						"command": "php_generate_constructor"
+					}
+				]
 			}
 		]
 	},
