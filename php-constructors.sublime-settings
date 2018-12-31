@@ -1,4 +1,4 @@
 {
 	// If set to true will generate optional parameters
-	"optional_constructor_params" : false,
+	"optional_constructor_params" : false
 }
