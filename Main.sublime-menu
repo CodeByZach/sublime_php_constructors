@@ -35,7 +35,7 @@
 							{
 								"caption": "Settings",
 								"command": "edit_settings", "args": {
-									"base_file": "${packages}/PHPConstructors/php-constructors.sublime-settings",
+									"base_file": "${packages}/PHP Constructors/php-constructors.sublime-settings",
 									"default": "{\n$0\n}\n"
 								}
 							},
@@ -44,7 +44,7 @@
 								"caption": "README",
 								"command": "open_file", "args":
 								{
-									"file": "${packages}/PHPConstructors/README.md"
+									"file": "${packages}/PHP Constructors/README.md"
 								}
 							}
 						]
