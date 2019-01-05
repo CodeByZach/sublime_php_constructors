@@ -36,7 +36,8 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 
 		# Insert constructor
 		if insertPosition == None or insertPosition == -1:
-			echo('Couldn\'t insert constructor in file:' + self.view.file_name())
+			# echo('Couldn\'t insert constructor in file:' + self.view.file_name())
+			echo('Can\'t insert constructor here.')
 		else:
 			self.view.insert(edit, insertPosition, constructor)
 
