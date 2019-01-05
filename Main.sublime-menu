@@ -11,8 +11,14 @@
 				"children":
 				[
 					{
-						"caption": "Generate PHP Constructor for Class",
-						"command": "php_generate_constructor"
+						"caption": "PHP Constructors",
+						"children":
+						[
+							{
+								"caption": "Generate PHP Constructor for Class",
+								"command": "php_generate_constructor"
+							}
+						]
 					}
 				]
 			}
