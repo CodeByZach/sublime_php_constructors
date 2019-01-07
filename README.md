@@ -19,8 +19,8 @@ class test
 }
 ```
 
-2. Go to Tools -> PHP Constructor
-3. Constructor will be generated
+2. Go to _Tools > Packages > PHP Constructors_
+3. Select _Generate PHP Constructor for Class_
 
 ```
 class test
@@ -41,7 +41,7 @@ class test
 }
 ```
 
-Take sometime to document your class properties with the following format:
+Take some time to document your class properties with in following format:
 
 ```
 class test
@@ -57,9 +57,9 @@ class test
 
 Commands available are:
 
-* Generate Constructor for Class
+* Generate PHP Constructor for Class
 
-This option can be accessed via the contextual menu (right click) or on the command palette.
+This command can be accessed via the _Tools > Packages > PHP Constructors_ or via the Command Palette.
 
 ##Available Settings
 
@@ -68,4 +68,4 @@ _type_   : **boolean**
 
 _default_: **false**
 
-_description_: If set to true generated constructor will be generated with optional parameters.
+_description_: If set to true, constructors will be generated with optional parameters.

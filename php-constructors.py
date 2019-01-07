@@ -82,7 +82,7 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 	def getDockblock(self, attributeNamesList):
 		viewContent = self.view.substr(sublime.Region(0, self.view.size()))
 		docRegex = '/\*\*\n\s*\*\s+@var\s+([\w\\\\]+)(.*)\n\s*.*\*/\n\s*.*\$'
-		paramTemplate = self.getTemplate('paramdoc')
+		docblockTemplate = '	/**	 * Class Constructor:param_list	 */\n'
 		parameters = ''
 
 		if len(attributeNamesList) > 0:
@@ -90,19 +90,25 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 
 		for attribute in attributeNamesList:
 			matches = re.search(docRegex + attribute[1:], viewContent, re.IGNORECASE)
-			parameters += paramTemplate.replace(':var_name', attribute)
-
 			paramType = ''
 			paramDescription = ''
-
 			if matches != None:
 				paramType = matches.group(1)
 				paramDescription = matches.group(2)
 
-			parameters = parameters.replace(':type', paramType)
-			parameters = parameters.replace(':description', paramDescription)
+			parameter = '	 * @param ' + attribute
 
-		return self.getTemplate('dockblock').replace(':param_list', parameters[:-1])[:-1]
+			if paramType != '':
+				parameter += ('	' + paramType)
+
+			if paramDescription != '':
+				parameter += ('	' + paramDescription)
+
+			parameter += '\n'
+
+			parameters += parameter
+
+		return docblockTemplate.replace(':param_list', parameters[:-1])[:-1]
 
 	def getInternalConstructorContent(self, attributeNamesList):
 		# Build the internal part of the constructor
