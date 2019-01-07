@@ -43,14 +43,8 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 
 	def getTemplate(self, templateName):
 		template = ''
-		if templateName == 'paramdoc':
-			template = '''	 * @param :type   :var_name   :description\n'''
-		elif templateName == 'dockblock':
-			template = '''
-	/**
-	 * Class Constructor:param_list
-	 */\n'''
-		elif templateName == 'constructor':
+
+		if templateName == 'constructor':
 			template = '''
 :docblock
 	public function __construct(:parameter_list)
@@ -69,7 +63,7 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 
 	def getAttributeNamesList(self, classAttributeRegions):
 		# Iterate over the attribute matches and get the content for each one
-		attributeNameRegex = '\s(\$\w+);'
+		attributeNameRegex = '\s(\$\w+)'
 		attributes = []
 
 		for attribute in classAttributeRegions:
@@ -81,28 +75,42 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 
 	def getDockblock(self, attributeNamesList):
 		viewContent = self.view.substr(sublime.Region(0, self.view.size()))
-		docRegex = '/\*\*\n\s*\*\s+@var\s+([\w\\\\]+)(.*)\n\s*.*\*/\n\s*.*\$'
-		docblockTemplate = '	/**	 * Class Constructor:param_list	 */\n'
+		# docRegex = '/\*\*\n\s*\*\s+@var\s+([\w\\\\]+) (.*)\n\s*.*\*/\n\s*.*\$'
+		docBothRegex = '/\*\*\n\s*\*\s+(.*)\n\s*\*\s+@var\s+([\w\\\\]+).*\n\s*\*\/\n\s*.*\$'
+		docVarRegex = '/\*\*\n\s*\*\s+@var\s+([\w\\\\]+).*\n\s*\*\/\n\s*.*\$'
+		docDescRegex = '/\*\*\n\s*\*\s+(.*)\n\s*\*\/\n\s*.*\$'
+
+		docblockTemplate = '	/**\n	 * Class Constructor:param_list\n	 */\n'
 		parameters = ''
 
 		if len(attributeNamesList) > 0:
 			parameters += '\n'
 
 		for attribute in attributeNamesList:
-			matches = re.search(docRegex + attribute[1:], viewContent, re.IGNORECASE)
 			paramType = ''
 			paramDescription = ''
-			if matches != None:
-				paramType = matches.group(1)
-				paramDescription = matches.group(2)
+
+			matches = re.search(docBothRegex + attribute[1:], viewContent, re.IGNORECASE)
+			if matches == None:
+				matches = re.search(docVarRegex + attribute[1:], viewContent, re.IGNORECASE)
+				if matches == None:
+					matches = re.search(docDescRegex + attribute[1:], viewContent, re.IGNORECASE)
+					if matches != None:
+						paramDescription = matches.group(1)
+				else:
+					paramType = matches.group(1)
+			else:
+				paramType = matches.group(2)
+				paramDescription = matches.group(1)
+
 
 			parameter = '	 * @param ' + attribute
 
 			if paramType != '':
-				parameter += ('	' + paramType)
+				parameter += ('  ' + paramType)
 
 			if paramDescription != '':
-				parameter += ('	' + paramDescription)
+				parameter += ('  (' + paramDescription + ')')
 
 			parameter += '\n'
 
