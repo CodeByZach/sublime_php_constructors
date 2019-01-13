@@ -1,4 +1,10 @@
 {
-	// If set to true will generate optional parameters
-	"optional_constructor_params" : false
+	// If set to true, constructors will be generated with optional parameters.
+	"optional_constructor_params" : false,
+
+	// If set to true, will omit underscore on private/protected variables for constructor parameters.
+	"ignore_visibility_notation" : false,
+
+	// If set to true, will pass all parameters to the constructor in a single array.
+	"parameter_as_array" : false
 }

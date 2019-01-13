@@ -12,6 +12,9 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 
 		# Load settings for future usage
 		settings = sublime.load_settings('php-constructors.sublime-settings')
+		setting_optional_params = settings.get('optional_constructor_params')
+		setting_ignore_visibility = settings.get('ignore_visibility_notation')
+		setting_pass_array = settings.get('parameter_as_array')
 
 		# Get regions of the class attributes
 		classAttributes = self.getClassAttributeRegions()
@@ -20,16 +23,16 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 		attributes = self.getAttributeNamesList(classAttributes)
 
 		# Get documentation block content
-		docblock = self.getDockblock(attributes)
+		docblock = self.getDockblock(attributes, setting_ignore_visibility, setting_pass_array)
 
 		# Get internal content for constructor
-		internalConstructorContent = self.getInternalConstructorContent(attributes)
+		internalConstructorContent = self.getInternalConstructorContent(attributes, setting_ignore_visibility, setting_pass_array)
 
-		# Get parameters for constructor
-		parameters = self.getParameterList(attributes, settings.get('optional_constructor_params'))
+		# Get parameter list for constructor
+		parameterList = self.getParameterList(attributes, setting_optional_params, setting_ignore_visibility, setting_pass_array)
 
 		# Get complete contents of the constructor
-		constructor = self.getConstructor(docblock, parameters, internalConstructorContent)
+		constructor = self.getConstructor(docblock, parameterList, internalConstructorContent)
 
 		# Get the position to insert the constructor
 		insertPosition = self.getConstructorPosition(classAttributes)
@@ -73,7 +76,7 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 
 		return attributes
 
-	def getDockblock(self, attributeNamesList):
+	def getDockblock(self, attributeNamesList, ignoreVisibility, passArray):
 		viewContent = self.view.substr(sublime.Region(0, self.view.size()))
 		# docRegex = '/\*\*\n\s*\*\s+@var\s+([\w\\\\]+) (.*)\n\s*.*\*/\n\s*.*\$'
 		docBothRegex = '/\*\*\n\s*\*\s+(.*)\n\s*\*\s+@var\s+([\w\\\\]+).*\n\s*\*\/\n\s*.*\$'
@@ -83,58 +86,80 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 		docblockTemplate = '	/**\n	 * Class Constructor:param_list\n	 */\n'
 		parameters = ''
 
-		if len(attributeNamesList) > 0:
-			parameters += '\n'
+		if passArray == True:
+			parameters = '\n	 * @param array $data\n'
+		else:
+			if len(attributeNamesList) > 0:
+				parameters += '\n'
 
-		for attribute in attributeNamesList:
-			paramType = ''
-			paramDescription = ''
+			for attribute in attributeNamesList:
+				paramType = ''
+				paramDescription = ''
 
-			matches = re.search(docBothRegex + attribute[1:], viewContent, re.IGNORECASE)
-			if matches == None:
-				matches = re.search(docVarRegex + attribute[1:], viewContent, re.IGNORECASE)
+				matches = re.search(docBothRegex + attribute[1:], viewContent, re.IGNORECASE)
 				if matches == None:
-					matches = re.search(docDescRegex + attribute[1:], viewContent, re.IGNORECASE)
-					if matches != None:
-						paramDescription = matches.group(1)
+					matches = re.search(docVarRegex + attribute[1:], viewContent, re.IGNORECASE)
+					if matches == None:
+						matches = re.search(docDescRegex + attribute[1:], viewContent, re.IGNORECASE)
+						if matches != None:
+							paramDescription = matches.group(1)
+					else:
+						paramType = matches.group(1)
 				else:
-					paramType = matches.group(1)
-			else:
-				paramType = matches.group(2)
-				paramDescription = matches.group(1)
+					paramType = matches.group(2)
+					paramDescription = matches.group(1)
 
 
-			parameter = '	 * @param ' + attribute
+				if ignoreVisibility == True and attribute[1] == '_':
+					attribute = '$' + attribute[2:]
 
-			if paramType != '':
-				parameter += ('  ' + paramType)
+				parameter = '	 * @param ' + attribute
 
-			if paramDescription != '':
-				parameter += ('  (' + paramDescription + ')')
+				if paramType != '':
+					parameter += ('  ' + paramType)
 
-			parameter += '\n'
+				if paramDescription != '':
+					parameter += ('  (' + paramDescription + ')')
 
-			parameters += parameter
+				parameter += '\n'
+
+				parameters += parameter
 
 		return docblockTemplate.replace(':param_list', parameters[:-1])[:-1]
 
-	def getInternalConstructorContent(self, attributeNamesList):
+	def getInternalConstructorContent(self, attributeNamesList, ignoreVisibility, passArray):
 		# Build the internal part of the constructor
 		internalConstructorContent = ''
 
 		for variableName in attributeNamesList:
-			internalConstructorContent += '\t\t$this->' + variableName[1:] + ' = ' + variableName + ';\n'
+			parameterName = variableName
+
+			if ignoreVisibility == True and parameterName[1] == '_':
+				parameterName = '$' + parameterName[2:]
+
+			if passArray == True:
+				parameterName = '$data[\'' + parameterName[1:] + '\']'
+
+			internalConstructorContent += '\t\t$this->' + variableName[1:] + ' = ' + parameterName + ';\n'
 
 		return internalConstructorContent[2:-1]
 
-	def getParameterList(self, attributeNamesList, optionalParams):
+	def getParameterList(self, attributeNamesList, optionalParams, ignoreVisibility, passArray):
 		# Join the attributes to add it as a parameter list for the constructor
-		if optionalParams == True:
-			attributeList = ' = null, '.join(attributeNamesList) + ' = null'
+		if passArray == True:
+			parameterList = 'array $data'
 		else:
-			attributeList = ', '.join(attributeNamesList)
+			if ignoreVisibility == True:
+				for i, attribute in enumerate(attributeNamesList):
+					if attributeNamesList[i][1] == '_':
+						attributeNamesList[i] = '$' + attribute[2:]
 
-		return attributeList
+			if optionalParams == True:
+				parameterList = ' = null, '.join(attributeNamesList) + ' = null'
+			else:
+				parameterList = ', '.join(attributeNamesList)
+
+		return parameterList
 
 	def getConstructor(self, docblock, parameters, internalConstructorContent):
 		constructorTemplate = self.getTemplate('constructor')

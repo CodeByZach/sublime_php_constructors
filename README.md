@@ -69,3 +69,17 @@ _type_   : **boolean**
 _default_: **false**
 
 _description_: If set to true, constructors will be generated with optional parameters.
+
+####ignore_visibility_notation
+_type_   : **boolean**
+
+_default_: **false**
+
+_description_: If set to true, will omit underscore on private variables for constructor parameters.
+
+####parameter_as_array
+_type_   : **boolean**
+
+_default_: **false**
+
+_description_: If set to true, will pass all parameters to the constructor in a single array.
