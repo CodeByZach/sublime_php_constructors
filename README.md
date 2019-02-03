@@ -3,7 +3,7 @@
 PHP Constructors generates for you PHP Classes constructors.
 
 ##Features:
-* Generate class constructor
+* Generate class constructor.
 * Description, type and var name automatically discovered from the variable docblock.
 
 ##Usage Instruction:
