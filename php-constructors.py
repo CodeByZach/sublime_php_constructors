@@ -11,7 +11,7 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 		# TODO: Verify if constructor already exists and skip
 
 		# Load settings for future usage
-		settings = sublime.load_settings('php-constructors.sublime-settings')
+		settings = sublime.load_settings('PHP Constructors.sublime-settings')
 		setting_optional_params = settings.get('optional_constructor_params')
 		setting_ignore_visibility = settings.get('ignore_visibility_notation')
 		setting_pass_array = settings.get('parameter_as_array')

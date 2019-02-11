@@ -40,11 +40,10 @@
 						[
 							{
 								"caption": "Settings",
-								"command": "z_edit_settings",
+								"command": "edit_settings",
 								"args":
 								{
-									"base_file": "${packages}/PHP Constructors/php-constructors.sublime-settings",
-									"user_file": "${packages}/User/PHP Constructors/php-constructors.sublime-settings",
+									"base_file": "${packages}/PHP Constructors/PHP Constructors.sublime-settings",
 									"default": "{\n\t$0\n}\n"
 								}
 							},
