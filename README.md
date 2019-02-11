@@ -1,12 +1,12 @@
-#PHP Constructors
+# PHP Constructors
 
 PHP Constructors generates for you PHP Classes constructors.
 
-##Features:
+## Features:
 * Generate class constructor.
 * Description, type and var name automatically discovered from the variable docblock.
 
-##Usage Instruction:
+## Usage Instruction:
 1. Write your class properties inside your PHP class:
 
 ```
@@ -53,7 +53,7 @@ class test
 }
 ```
 
-##Commands
+## Commands
 
 Commands available are:
 
@@ -61,23 +61,23 @@ Commands available are:
 
 This command can be accessed via the _Tools > Packages > PHP Constructors_ or via the Command Palette.
 
-##Available Settings
+## Available Settings
 
-####optional_constructor_params
+#### optional_constructor_params
 _type_   : **boolean**
 
 _default_: **false**
 
 _description_: If set to true, constructors will be generated with optional parameters.
 
-####ignore_visibility_notation
+#### ignore_visibility_notation
 _type_   : **boolean**
 
 _default_: **false**
 
 _description_: If set to true, will omit underscore on private variables for constructor parameters.
 
-####parameter_as_array
+#### parameter_as_array
 _type_   : **boolean**
 
 _default_: **false**
