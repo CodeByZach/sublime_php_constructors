@@ -1,6 +1,6 @@
 # PHP Constructors
 
-PHP Constructors generates for you PHP Classes constructors.
+PHP Constructors is a Sublime Text plug-in that generates PHP class constructors, automagically.
 
 ## Features:
 * Generate class constructor.
