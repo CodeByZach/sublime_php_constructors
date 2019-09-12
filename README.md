@@ -75,7 +75,7 @@ _type_   : **boolean**
 
 _default_: **false**
 
-_description_: If set to true, will omit underscore on private variables for constructor parameters.
+_description_: If set to true, will omit underscore prefix common on private variables for constructor parameters.
 
 #### parameter_as_array
 _type_   : **boolean**
