@@ -1,4 +1,5 @@
 # PHP Constructors
+[![Latest Release](https://img.shields.io/github/tag/EatBreatheCode/sublime_php_constructors.svg?label=version)](https://github.com/EatBreatheCode/sublime_php_constructors/releases)
 
 PHP Constructors is a Sublime Text plug-in that generates PHP class constructors, automagically.
 
