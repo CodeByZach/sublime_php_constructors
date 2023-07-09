@@ -6,18 +6,15 @@
 		"children":
 		[
 			{
-				"id": "packages",
 				"caption": "Packages",
+				"id": "packages",
 				"children":
 				[
 					{
 						"caption": "PHP Constructors",
 						"children":
 						[
-							{
-								"caption": "Generate PHP Constructor for Class",
-								"command": "php_generate_constructor"
-							}
+							{ "caption": "Generate PHP Constructor for Class", "command": "php_generate_constructor" }
 						]
 					}
 				]
@@ -25,6 +22,8 @@
 		]
 	},
 	{
+		"caption": "Preferences",
+		"mnemonic": "n",
 		"id": "preferences",
 		"children":
 		[
@@ -67,28 +66,7 @@
 										"command": "z_edit_settings",
 										"args":
 										{
-											"is_parent_setting": "1",
 											"base_file": "${packages}/PHP Constructors/Context.sublime-menu",
-											"default": "[\n\t$0\n]\n"
-										}
-									},
-									{
-										"caption": "Side Bar Menu",
-										"command": "z_edit_settings",
-										"args":
-										{
-											"is_parent_setting": "1",
-											"base_file": "${packages}/PHP Constructors/Side Bar.sublime-menu",
-											"default": "[\n\t$0\n]\n"
-										}
-									},
-									{
-										"caption": "Tab Menu",
-										"command": "z_edit_settings",
-										"args":
-										{
-											"is_parent_setting": "1",
-											"base_file": "${packages}/PHP Constructors/Tab Context.sublime-menu",
 											"default": "[\n\t$0\n]\n"
 										}
 									},
@@ -97,8 +75,43 @@
 										"command": "z_edit_settings",
 										"args":
 										{
-											"is_parent_setting": "1",
 											"base_file": "${packages}/PHP Constructors/Main.sublime-menu",
+											"default": "[\n\t$0\n]\n"
+										}
+									},
+									{
+										"caption": "Side Bar Menu",
+										"command": "z_edit_settings",
+										"args":
+										{
+											"base_file": "${packages}/PHP Constructors/Side Bar.sublime-menu",
+											"default": "[\n\t$0\n]\n"
+										}
+									},
+									{
+										"caption": "Side Bar Open Files Menu",
+										"command": "z_edit_settings",
+										"args":
+										{
+											"base_file": "${packages}/PHP Constructors/Tab Sidebar Context.sublime-menu",
+											"default": "[\n\t$0\n]\n"
+										}
+									},
+									{
+										"caption": "Tab Menu",
+										"command": "z_edit_settings",
+										"args":
+										{
+											"base_file": "${packages}/PHP Constructors/Tab Context.sublime-menu",
+											"default": "[\n\t$0\n]\n"
+										}
+									},
+									{
+										"caption": "Widget Menu",
+										"command": "z_edit_settings",
+										"args":
+										{
+											"base_file": "${packages}/PHP Constructors/Widget Context.sublime-menu",
 											"default": "[\n\t$0\n]\n"
 										}
 									}
@@ -109,7 +122,6 @@
 								"command": "z_edit_settings",
 								"args":
 								{
-									"is_parent_setting": "1",
 									"base_file": "${packages}/PHP Constructors/Default.sublime-commands",
 									"default": "[\n\t$0\n]\n"
 								}
