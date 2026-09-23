@@ -61,12 +61,12 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 
 	def getClassAttributeRegions(self):
 		# Search attributes in the current view
-		attributeLineRegex = '((?:private|public|protected)[ ]{0,}(?:final|static)?[ ]{0,}(?:\$.*?)[ |=|;].*)\n'
+		attributeLineRegex = '((?:private|public|protected)[ ]{0,}(?:final|static)?[ ]{0,}(?:\\$.*?)[ |=|;].*)\n'
 		return self.view.find_all(attributeLineRegex, sublime.IGNORECASE)
 
 	def getAttributeNamesList(self, classAttributeRegions):
 		# Iterate over the attribute matches and get the content for each one
-		attributeNameRegex = '\s(\$\w+)'
+		attributeNameRegex = r'\s(\$\w+)'
 		attributes = []
 
 		for attribute in classAttributeRegions:
@@ -79,9 +79,9 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 	def getDockblock(self, attributeNamesList, ignoreVisibility, passArray):
 		viewContent = self.view.substr(sublime.Region(0, self.view.size()))
 		# docRegex = '/\*\*\n\s*\*\s+@var\s+([\w\\\\]+) (.*)\n\s*.*\*/\n\s*.*\$'
-		docBothRegex = '/\*\*\n\s*\*\s+(.*)\n\s*\*\s+@var\s+([\w\\\\]+).*\n\s*\*\/\n\s*.*\$'
-		docVarRegex = '/\*\*\n\s*\*\s+@var\s+([\w\\\\]+).*\n\s*\*\/\n\s*.*\$'
-		docDescRegex = '/\*\*\n\s*\*\s+(.*)\n\s*\*\/\n\s*.*\$'
+		docBothRegex = '/\\*\\*\n\\s*\\*\\s+(.*)\n\\s*\\*\\s+@var\\s+([\\w\\\\]+).*\n\\s*\\*\\/\n\\s*.*\\$'
+		docVarRegex = '/\\*\\*\n\\s*\\*\\s+@var\\s+([\\w\\\\]+).*\n\\s*\\*\\/\n\\s*.*\\$'
+		docDescRegex = '/\\*\\*\n\\s*\\*\\s+(.*)\n\\s*\\*\\/\n\\s*.*\\$'
 
 		docblockTemplate = '	/**\n	 * Class Constructor:param_list\n	 */\n'
 		parameters = ''
@@ -175,7 +175,7 @@ class PhpGenerateConstructorCommand(sublime_plugin.TextCommand):
 		position = None
 
 		if len(classAttributesRegions) == 0:
-			position = self.view.find('class\s+\w[\w\s\n]+\{', sublime.IGNORECASE).end()
+			position = self.view.find('class\\s+\\w[\\w\\s\n]+\\{', sublime.IGNORECASE).end()
 		else:
 			position = classAttributesRegions[-1].end()
 
