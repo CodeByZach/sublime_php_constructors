@@ -7,7 +7,7 @@
 cachetools==7.2.0
 colorama==0.4.6
 distlib==0.4.3
-filelock==4.0.1
+filelock==4.0.3
 flake8==7.4.1
 flake8-builtins==3.1.0
 flake8-docstrings==1.7.0
@@ -26,5 +26,5 @@ python-discovery==1.6.1
 setuptools==84.0.0
 snowballstemmer==3.1.1
 tomli_w==1.2.0
-tox==4.63.0
-virtualenv==21.11.1
+tox==4.64.1
+virtualenv==21.12.0
